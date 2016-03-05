@@ -10,7 +10,9 @@
     </body>
     
     <script>
-        window.location.protocol = "https";
+        if(window.location.href.indexOf("https")<0){
+            window.location.href = "https"+window.location.href.substring(4);
+        }
         
         window.AudioContext = window.AudioContext || window.webkitAudioContext;
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
