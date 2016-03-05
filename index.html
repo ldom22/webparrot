@@ -10,13 +10,14 @@
     </body>
     
     <script>
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioContext = new AudioContext();
-        try {
-            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        window.onload = function(){
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioContext = new AudioContext();
+            try {
+                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
             
-            // ask for an audio input
-            navigator.getUserMedia(
+                // ask for an audio input
+                navigator.getUserMedia(
                                    {
                                    "audio": {
                                    "mandatory": {
@@ -28,19 +29,19 @@
                                    "optional": []
                                    },
                                    }, gotStream, didntGetStream);
-        } catch (e) {
-            alert('getUserMedia threw exception :' + e);
-        }
-        function didntGetStream() {
-            alert('Stream generation failed.');
-        }
+            } catch (e) {
+                alert('getUserMedia threw exception :' + e);
+            }
+            function didntGetStream() {
+                alert('Stream generation failed.');
+            }
     
-        var mediaStreamSource = null;
+            var mediaStreamSource = null;
     
-        function gotStream(stream) {
-            // Create an AudioNode from the stream.
-            mediaStreamSource = audioContext.createMediaStreamSource(stream);
-        
+            function gotStream(stream) {
+                // Create an AudioNode from the stream.
+                mediaStreamSource = audioContext.createMediaStreamSource(stream);
+            }
         }
     </script>
     
