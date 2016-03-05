@@ -18,30 +18,30 @@
             
                 // ask for an audio input
                 navigator.getUserMedia(
-                                   {
-                                   "audio": {
-                                   "mandatory": {
-                                   "googEchoCancellation": "false",
-                                   "googAutoGainControl": "false",
-                                   "googNoiseSuppression": "false",
-                                   "googHighpassFilter": "false"
-                                   },
-                                   "optional": []
-                                   },
-                                   }, gotStream, didntGetStream);
+                {
+                    "audio": {
+                        "mandatory": {
+                            "googEchoCancellation": "false",
+                            "googAutoGainControl": "false",
+                            "googNoiseSuppression": "false",
+                            "googHighpassFilter": "false"
+                        },
+                        "optional": []
+                    },
+                }, gotStream, didntGetStream);
             } catch (e) {
                 alert('getUserMedia threw exception :' + e);
             }
-            function didntGetStream() {
-                alert('Stream generation failed.');
-            }
+        }
+        function didntGetStream() {
+            alert('Stream generation failed.');
+        }
     
-            var mediaStreamSource = null;
+        var mediaStreamSource = null;
     
-            function gotStream(stream) {
-                // Create an AudioNode from the stream.
-                mediaStreamSource = audioContext.createMediaStreamSource(stream);
-            }
+        function gotStream(stream) {
+            // Create an AudioNode from the stream.
+            mediaStreamSource = audioContext.createMediaStreamSource(stream);
         }
     </script>
     
