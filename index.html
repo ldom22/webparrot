@@ -18,8 +18,21 @@
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
         window.addEventListener('load', init, false);
         
+        var recorder;
+        
+        function stop(){
+            recorder.stop();
+            recorder.exportWAV(function(s) {
+                audio.src = window.URL.createObjectURL(s);
+            });
+        }
+        
         function sound (stream) {
-            
+            var context = new webkitAudioContext();
+            var mediaStreamSource = context.createMediaStreamSource(stream);
+            recorder = new Recorder(mediaStreamSource);
+            recorder.record();
+            setTimeout(stop, 3000);
         }
     
         function error () {
