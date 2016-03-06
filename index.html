@@ -31,7 +31,7 @@
         function sound (stream) {
             var context = new webkitAudioContext();
             var mediaStreamSource = context.createMediaStreamSource(stream);
-            recorder = new Recorder(mediaStreamSource);
+            recorder = Recorder(mediaStreamSource);
             recorder.record();
             setTimeout(stop, 3000);
         }
